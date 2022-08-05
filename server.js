@@ -5,9 +5,6 @@ let MongoClient = require("mongodb").MongoClient;
 let bodyParser = require("body-parser");
 let app = express();
 
-require("dotenv").config();
-console.log("all envs: ", process.env);
-
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -27,10 +24,7 @@ app.get("/profile-picture", function (req, res) {
 
 // use when starting application locally
 // let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
-let mongoUrlLocal = process.env.;
-
-// use when starting application as docker container
-let mongoUrlDocker = "mongodb://admin:password@mongodb";
+let mongoUrlLocal = "mongodb://admin:password@localhost:8888";
 
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -93,8 +87,6 @@ app.get("/get-profile", function (req, res) {
   );
 });
 
-const port = process.env.SERVER_PORT || 9999;
-
-app.listen(port, function () {
-  console.log(`app server is listening on port ${port}!`);
+app.listen(3000, function () {
+  console.log(`app server is listening on 3000!`);
 });
